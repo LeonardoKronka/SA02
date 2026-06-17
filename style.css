@@ -50,18 +50,21 @@ body {
     color: #cc0000; /* Hover vermelho */
 }
 
-/* === CONTEÚDO PRINCIPAL (Fundo branco como uma página de jornal) === */
+/* === CONTEÚDO PRINCIPAL (Envelope que centraliza tudo no meio da tela) === */
 .conteudo {
     width: 100%;
     max-width: 1200px;
-    margin: 30px auto;
+    margin: 30px auto; /* O 'auto' centraliza o bloco na tela */
     padding: 20px;
     background-color: #ffffff;
-    
-    /* Layout inicial em Grid para celulares */
+}
+
+/* === A GRADE DE NOTÍCIAS (Onde os cards ficam) === */
+#grid-noticias {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 coluna no celular */
     gap: 30px;
+    width: 100%;
 }
 
 /* === ESTILO DOS CARDS DE NOTÍCIA (Sem cantos arredondados) === */
@@ -143,43 +146,205 @@ body {
         margin-bottom: 0;
     }
 
-    /* Passa para 2 colunas */
-    .conteudo {
+    /* A grade de notícias passa para 2 colunas */
+    #grid-noticias {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* AQUI ESTÁ O PULO DO GATO: A primeira notícia vira destaque (Manchete) */
-    .noticia:first-child {
+    /* A primeira notícia vira destaque (Manchete) */
+    #grid-noticias .noticia:first-child {
         grid-column: span 2; /* Faz a primeira notícia ocupar as duas colunas */
         border-bottom: 2px solid #000000; /* Linha mais forte pra separar a manchete */
         padding-bottom: 30px;
     }
 
-    .noticia:first-child img {
+    #grid-noticias .noticia:first-child img {
         height: 400px; /* Imagem maior para o destaque */
     }
 
-    .noticia:first-child .noticia-texto h2 {
+    #grid-noticias .noticia:first-child .noticia-texto h2 {
         font-size: 2.2rem; /* Título gigante igual manchete de portal */
     }
 }
 
 /* Desktop (Telas maiores que 1024px) */
 @media (min-width: 1024px) {
-    /* Passa para 3 colunas */
-    .conteudo {
+    /* A grade de notícias passa para 3 colunas */
+    #grid-noticias {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    /* A primeira notícia ocupa 2 colunas e as outras se ajeitam do lado e embaixo */
-    .noticia:first-child {
+    /* A primeira notícia ocupa 2 colunas e 2 linhas pra ficar bem grande */
+    #grid-noticias .noticia:first-child {
         grid-column: span 2;
-        grid-row: span 2; /* Ocupa duas linhas também pra ficar bem grande */
+        grid-row: span 2; 
     }
 
-    /* Tira as linhas de baixo das notícias menores no desktop, usa o gap do grid */
-    .noticia {
+    /* Tira as linhas de baixo das notícias menores no desktop */
+    #grid-noticias .noticia {
         border-bottom: none;
         padding-bottom: 0;
+    }
+}
+
+/* === ESTILOS DA PÁGINA DE CONTATO (Estilo Editorial) === */
+.titulo-editorial {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.formulario-contato {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.campo label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.campo input, .campo textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #1a1a1a;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+.campo input:focus, .campo textarea:focus {
+    border-color: #cc0000; /* Realce em vermelho ao focar */
+}
+
+.botao-enviar {
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.botao-enviar:hover {
+    background-color: #000000;
+}
+
+/* === ESTILOS DA VIEW DETALHADA (Layout de Split) === */
+.layout-detalhe {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+    gap: 40px;
+}
+
+.titulo-detalhe-grande {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 15px 0;
+}
+
+.imagem-detalhe-full {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.paragrafo-resumo {
+    font-size: 1.25rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    border-left: 4px solid #cc0000;
+    padding-left: 15px;
+}
+
+.paragrafo-corpo {
+    font-size: 1.1rem;
+    color: #222;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Barra Lateral da Direita */
+.barra-lateral {
+    border-top: 4px solid #000;
+    padding-top: 15px;
+}
+
+.titulo-lateral {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+/* Cards das notícias pequenas */
+.card-lateral-pequeno {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.card-lateral-pequeno:hover h4 {
+    color: #cc0000;
+}
+
+.card-lateral-pequeno img {
+    width: 100px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.card-lateral-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tag-lateral-mini {
+    font-size: 0.65rem;
+    font-weight: bold;
+    color: #cc0000;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.card-lateral-pequeno h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #000;
+}
+
+/* === RESPONSIVIDADE DO DETALHE (Aplica as Media Queries) === */
+@media (min-width: 900px) {
+    .layout-detalhe {
+        grid-template-columns: 2.5fr 1fr; /* Divide em notícia principal grande e lateral pequena */
+    }
+    .barra-lateral {
+        border-top: none;
+        border-left: 1px solid #e6e6e6;
+        padding-top: 0;
+        padding-left: 20px;
     }
 }

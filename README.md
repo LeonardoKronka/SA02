@@ -11,3 +11,5 @@ Design Editorial (UI): A interface foi reestilizada com inspiração em portais 
 Hierarquia de Informação (UX/CSS Grid): Utilizando a pseudo-classe :first-child combinada com as Media Queries, a primeira matéria foi promovida a "Manchete de Destaque", ocupando mais colunas em resoluções maiores. Isso orienta a leitura do usuário e cria um fluxo de navegação mais natural para plataformas digitais de notícias.
 
 Feedback Visual (UX/UI): Adição de tags categóricas (Tecnologia, Economia, Esportes) acima das manchetes. Isso reduz a carga cognitiva do usuário, permitindo que ele identifique o assunto da matéria antes mesmo de ler o título.
+
+Boas Práticas e Organização de Código: O comportamento interativo da página foi isolado em um arquivo externo (script.js). Essa alternativa foi escolhida para aplicar o conceito de Separação de Interesses, garantindo um HTML mais semântico e limpo, além de facilitar a manutenção futura e otimizar o carregamento do navegador através de cache.
